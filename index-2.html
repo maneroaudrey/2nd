@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy 2nd Monthsary 💙</title>
+
+<style>
+body {
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(135deg,#0b1a2b,#000);
+  color:white;
+  text-align:center;
+}
+
+/* LOGIN */
+.login {
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+input {
+  padding:10px;
+  border-radius:10px;
+  border:none;
+  margin-top:10px;
+}
+
+button {
+  padding:10px 20px;
+  margin-top:10px;
+  border:none;
+  border-radius:10px;
+  background:#1f3b5c;
+  color:white;
+  cursor:pointer;
+}
+
+/* CONTENT */
+.content {
+  display:none;
+  padding:30px;
+  animation:fadeIn 1s ease;
+}
+
+/* ENVELOPE */
+.envelope {
+  width:260px;
+  height:160px;
+  background:#1f3b5c;
+  margin:40px auto;
+  position:relative;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.envelope::before {
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  width:0;
+  height:0;
+  border-left:130px solid transparent;
+  border-right:130px solid transparent;
+  border-bottom:80px solid #294d73;
+  transition:0.5s;
+}
+
+.envelope.open::before {
+  transform:rotateX(180deg);
+}
+
+/* LETTER */
+.letter {
+  display:none;
+  max-width:600px;
+  margin:20px auto;
+  background:rgba(255,255,255,0.05);
+  padding:20px;
+  border-radius:15px;
+  line-height:1.6;
+  animation:fadeIn 1s ease;
+}
+
+/* GALLERY */
+.gallery {
+  margin-top:30px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:15px;
+}
+
+.card {
+  background:rgba(255,255,255,0.05);
+  padding:10px;
+  border-radius:10px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.card:hover {
+  transform:scale(1.05);
+}
+
+.card img {
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+.small {
+  font-size:12px;
+  opacity:0.7;
+}
+
+/* POPUP */
+.popup {
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%) scale(0.8);
+  background:#1f3b5c;
+  padding:20px;
+  border-radius:15px;
+  opacity:0;
+  pointer-events:none;
+  transition:0.3s;
+}
+
+.popup.show {
+  opacity:1;
+  transform:translate(-50%,-50%) scale(1);
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+  from {opacity:0; transform:translateY(20px);}
+  to {opacity:1; transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="login">
+  <h1>Enter Password 💙</h1>
+  <input type="password" id="password">
+  <button onclick="login()">Open</button>
+</div>
+
+<div class="content" id="content">
+
+<h1>Happy 2nd Monthsary 💙</h1>
+
+<div class="envelope" id="env" onclick="openLetter()"></div>
+<p class="small">Tap the envelope 💌</p>
+
+<div class="letter" id="letter">
+<p>
+Hi, Sev <br><br>
+
+Happy 2nd monthsary, Baby! <br><br>
+
+I still can’t believe how fast time goes when I’m with you. These past two months have been one of the happiest parts of my life. You made ordinary days feel special, and even the smallest moments with you mean so much to me.<br><br>
+
+Thank you for being patient with me, for making me laugh, and for always being there. Kahit na malayo ka hindi ka nagkukulang iparamdam sa'kin na mahal mo ako.<br><br>
+
+I really love how you care, how you understand me, and how you always make things feel lighter. I really can't wait to be with you, Baby. This is just the beginning of many more months (and years) with you.<br><br>
+
+Soon sev magkasama na tayo sa house and madaming kiss matatanggap mo from me. Konting tiis na lang po.<br><br>
+
+I love you always, Sev 💙
+</p>
+</div>
+
+<div class="gallery">
+
+<div class="card" onclick="popup()">
+<img src="images/pic1.jpg">
+<p>Mahal na mahal</p>
+<p class="small">Tap me 💙</p>
+</div>
+
+<div class="card" onclick="popup()">
+<img src="images/pic3.jpg">
+<p>Ikaw lang hanggang dulo, Sev</p>
+<p class="small">Tap me 💙</p>
+</div>
+
+<div class="card" onclick="popup()">
+<img src="images/pic2.jpg">
+<p>I miss</p>
+<p class="small">Tap me 💙</p>
+</div>
+
+</div>
+
+</div>
+
+<div class="popup" id="popup">I love you so much 💙</div>
+
+<audio id="music" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function login(){
+  let pass=document.getElementById('password').value;
+  if(pass==='22326'){
+    document.querySelector('.login').style.display='none';
+    document.getElementById('content').style.display='block';
+    document.getElementById('music').play();
+  } else {
+    alert('Wrong password');
+  }
+}
+
+function openLetter(){
+  document.getElementById('env').classList.add('open');
+  setTimeout(()=>{
+    document.getElementById('letter').style.display='block';
+  },400);
+}
+
+function popup(){
+  let p=document.getElementById('popup');
+  p.classList.add('show');
+  setTimeout(()=>{p.classList.remove('show');},2000);
+}
+</script>
+
+</body>
+</html>
